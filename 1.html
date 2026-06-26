@@ -1,0 +1,373 @@
+// filepath: c:\Users\Abinash Bista\Desktop\genAI\1.html
+// ...existing code...
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>[Your Name] – Software Engineer & Frontend Developer</title>
+  <meta name="description" content="Software engineer based in Kathmandu, Bagmati Province, Nepal. Specializes in C, C++, and frontend development."/>
+  <style>
+    /* Minimal CSS reset */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      line-height:1.4;
+      color:#0f1724;
+      background:linear-gradient(180deg,#fbfdff,#eef7ff);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding-top:72px;
+    }
+    :root{
+      --accent:#0ea5a4;
+      --muted:#64748b;
+      --card:#ffffff;
+      --glass: rgba(255,255,255,0.6);
+      --shadow: 0 6px 18px rgba(16,24,40,0.08);
+      --radius:12px;
+    }
+    .dark{
+      --accent:#7dd3fc;
+      --muted:#94a3b8;
+      --card:#071329;
+      --glass: rgba(0,0,0,0.45);
+      background:linear-gradient(180deg,#031021,#071329);
+      color:#e6eef8;
+    }
+
+    /* Header / Nav */
+    header{
+      position:fixed;left:0;right:0;top:0;height:64px;display:flex;align-items:center;
+      justify-content:center;backdrop-filter: blur(6px);
+      background:linear-gradient(180deg,rgba(255,255,255,0.7),rgba(255,255,255,0.45));
+      border-bottom:1px solid rgba(15,23,36,0.04);z-index:60;
+    }
+    .dark header{background:linear-gradient(180deg,rgba(0,0,0,0.45),rgba(0,0,0,0.25));border-bottom:1px solid rgba(255,255,255,0.03)}
+    nav{width:100%;max-width:1100px;padding:0 18px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;gap:10px;align-items:center;font-weight:600}
+    .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+    .nav-links{display:flex;gap:12px;align-items:center}
+    .nav-links a{color:inherit;text-decoration:none;padding:8px 12px;border-radius:8px;font-size:0.95rem}
+    .nav-links a:focus, .nav-links a:hover{background:var(--glass);outline:2px solid transparent}
+    .controls{display:flex;gap:8px;align-items:center}
+
+    /* Layout */
+    main{max-width:1100px;margin:28px auto;padding:18px}
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:20px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+    .hero{display:flex;gap:18px;align-items:center}
+    .avatar{
+      width:120px;height:120px;border-radius:14px;flex:0 0 120px;overflow:hidden;background:linear-gradient(135deg,#e6f7fb,#fff);
+      display:flex;align-items:center;justify-content:center;border:1px solid rgba(15,23,36,0.04)
+    }
+    .avatar svg{width:84px;height:84px;display:block}
+    .hero h1{font-size:1.4rem;margin-bottom:6px}
+    .hero p{color:var(--muted);margin-bottom:6px}
+
+    /* sections */
+    section{margin-bottom:18px}
+    .chips{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{padding:8px 10px;border-radius:999px;background:linear-gradient(180deg,#f8fbff,#eef7ff);font-size:.9rem;color:#07324a;border:1px solid rgba(10,20,30,0.04)}
+    .dark .chip{background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));color:var(--muted)}
+
+    /* projects */
+    .projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    @media (max-width:700px){.projects-grid{grid-template-columns:1fr}}
+    .project{display:flex;flex-direction:column;gap:10px;padding:14px}
+    .project .meta{display:flex;justify-content:space-between;align-items:center;font-size:.85rem;color:var(--muted)}
+    .tags{display:flex;gap:6px;flex-wrap:wrap}
+    .tag{font-size:.78rem;background:transparent;border:1px solid rgba(0,0,0,0.06);padding:6px;border-radius:8px}
+    .dark .tag{border-color:rgba(255,255,255,0.06)}
+
+    /* timeline */
+    .timeline{display:flex;flex-direction:column;gap:12px}
+    .timeline-item{padding:12px;border-left:3px solid var(--accent);background:linear-gradient(180deg,transparent,rgba(0,0,0,0.01));border-radius:6px}
+
+    /* contact */
+    form{display:flex;flex-direction:column;gap:10px}
+    label{font-size:.9rem;color:var(--muted)}
+    input[type=text],input[type=email],textarea{
+      padding:10px;border-radius:8px;border:1px solid rgba(15,23,36,0.08);background:transparent;color:inherit;font-size:1rem
+    }
+    input:focus,textarea:focus{outline:2px solid rgba(14,165,164,0.18);border-color:var(--accent)}
+    button{background:var(--accent);color:#042023;padding:10px 12px;border-radius:10px;border:0;font-weight:600;cursor:pointer}
+    .muted{color:var(--muted);font-size:.95rem}
+
+    footer{margin:32px 0;padding:18px;text-align:center;color:var(--muted);font-size:.95rem}
+
+    /* utilities */
+    .small{font-size:.86rem}
+    .flex{display:flex;gap:8px;align-items:center}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  </style>
+</head>
+<body>
+  <header role="banner" aria-label="Main header">
+    <nav aria-label="Primary navigation">
+      <div class="brand" aria-hidden="false">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="small">[Abiansh Bista]</span>
+      </div>
+
+      <div class="nav-links" role="navigation" aria-label="Section links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="controls">
+        <button id="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">🌓</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="home" role="main" tabindex="-1">
+    <!-- Hero -->
+    <section class="card hero" aria-labelledby="hero-title">
+      <div class="avatar" aria-hidden="true">
+        <!-- Placeholder avatar SVG - replace with your image if desired -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Profile placeholder">
+          <rect width="120" height="120" rx="14" fill="#e6f7fb"/>
+          <g transform="translate(15,18)" fill="#0f1724" opacity="0.9">
+            <circle cx="30" cy="28" r="20" fill="#fff"/>
+            <rect x="0" y="62" width="70" height="30" rx="8" fill="#fff"/>
+          </g>
+        </svg>
+      </div>
+      <div>
+        <h1 id="hero-title">Hi, I’m <strong>[Abinash Bistaj]</strong> — Software Engineer & Frontend Developer</h1>
+        <p class="muted">Based in Kathmandu, Bagmati Province, Nepal. I build efficient, accessible web apps and native-feeling frontends. Passionate about systems-level programming in C/C++ and modern web UI/UX.</p>
+        <p class="small">Primary: C • C++ • HTML • CSS • JavaScript • Debugging • Version Control</p>
+      </div>
+    </section>
+
+    <div class="grid">
+      <div>
+        <!-- About -->
+        <section class="card" id="about" aria-labelledby="about-title">
+          <h2 id="about-title">About</h2>
+          <p class="muted">Kathmandu, Bagmati Province, Nepal — I enjoy building clean, performant user interfaces and solving challenging problems with C/C++ and JavaScript. I focus on robust code, accessibility, and pragmatic engineering. Open to collaboration, freelance, and full-time roles.</p>
+        </section>
+
+        <!-- Skills -->
+        <section class="card" id="skills" aria-labelledby="skills-title">
+          <h2 id="skills-title">Skills & Qualifications</h2>
+          <div class="chips" role="list" aria-label="Skills list">
+            <span class="chip" role="listitem">C</span>
+            <span class="chip" role="listitem">C++</span>
+            <span class="chip" role="listitem">HTML</span>
+            <span class="chip" role="listitem">CSS</span>
+            <span class="chip" role="listitem">JavaScript (ES6+)</span>
+            <span class="chip" role="listitem">Debugging & Problem Solving</span>
+            <span class="chip" role="listitem">Git & Version Control</span>
+            <span class="chip" role="listitem">Responsive Design & Accessibility</span>
+          </div>
+        </section>
+
+        <!-- Projects -->
+        <section class="card" id="projects" aria-labelledby="projects-title">
+          <h2 id="projects-title">Projects</h2>
+          <div class="projects-grid" aria-live="polite">
+            <!-- Project 1 -->
+            <article class="project" aria-labelledby="p1-title">
+              <div class="meta">
+                <strong id="p1-title">CLI Task Manager</strong>
+                <span class="small muted">C</span>
+              </div>
+              <p class="muted">A lightweight command-line task manager written in C focused on speed and low memory usage. Supports saving to a compact binary format and simple filtering.</p>
+              <div class="flex">
+                <div class="tags" aria-hidden="true">
+                  <span class="tag">C</span><span class="tag">CLI</span>
+                </div>
+                <a class="small" href="#" target="_blank" rel="noopener">GitHub</a>
+              </div>
+            </article>
+
+            <!-- Project 2 -->
+            <article class="project" aria-labelledby="p2-title">
+              <div class="meta">
+                <strong id="p2-title">Embedded Sensor Logger</strong>
+                <span class="small muted">C++</span>
+              </div>
+              <p class="muted">A C++ project for logging sensor data on embedded hardware with an efficient ring buffer and CRC-backed storage. Includes a minimal web exporter for CSV download.</p>
+              <div class="flex">
+                <div class="tags" aria-hidden="true">
+                  <span class="tag">C++</span><span class="tag">Embedded</span>
+                </div>
+                <a class="small" href="#" target="_blank" rel="noopener">Repo</a>
+              </div>
+            </article>
+
+            <!-- Project 3 -->
+            <article class="project" aria-labelledby="p3-title">
+              <div class="meta">
+                <strong id="p3-title">Portfolio SPA</strong>
+                <span class="small muted">HTML • CSS • JS</span>
+              </div>
+              <p class="muted">A single-file SPA portfolio showcasing projects with accessible components and responsive design. Built with vanilla JS and no build tools for tiny footprint.</p>
+              <div class="flex">
+                <div class="tags" aria-hidden="true">
+                  <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+                </div>
+                <a class="small" href="#" target="_blank" rel="noopener">Live</a>
+              </div>
+            </article>
+
+            <!-- Project 4 (optional) -->
+            <article class="project" aria-labelledby="p4-title">
+              <div class="meta">
+                <strong id="p4-title">Algorithm Visualizer</strong>
+                <span class="small muted">JS • Canvas</span>
+              </div>
+              <p class="muted">Interactive visualizations of sorting and graph algorithms to help with teaching and debugging algorithmic approaches. Keyboard accessible controls.</p>
+              <div class="flex">
+                <div class="tags" aria-hidden="true">
+                  <span class="tag">JS</span><span class="tag">Canvas</span>
+                </div>
+                <a class="small" href="#" target="_blank" rel="noopener">Demo</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Experience & Education -->
+        <section class="card" id="experience" aria-labelledby="exp-title">
+          <h2 id="exp-title">Experience & Education</h2>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="small"><strong>Software Developer</strong> — Example Co. (2022–Present)</div>
+              <div class="muted small">Worked on frontend features, performance optimizations, and C++ tooling.</div>
+            </div>
+            <div class="timeline-item">
+              <div class="small"><strong>BSc Computer Science</strong> — Example University (2018–2022)</div>
+              <div class="muted small">Major projects in systems programming and web development.</div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Right column: Contact & Quick info -->
+      <aside>
+        <section class="card" id="contact" aria-labelledby="contact-title">
+          <h2 id="contact-title">Contact</h2>
+          <p class="muted">Prefer email? <a href="mailto:youremail@example.com">youremail@example.com</a></p>
+
+          <!-- Contact form (no backend) -->
+          <form id="contact-form" novalidate aria-label="Contact form">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required placeholder="Your name" />
+
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Write a brief message (min 10 chars)"></textarea>
+
+            <button type="submit">Send Message</button>
+            <div id="form-msg" role="status" aria-live="polite" class="muted small" style="margin-top:8px"></div>
+          </form>
+        </section>
+
+        <section class="card" aria-labelledby="quick-title">
+          <h3 id="quick-title">Quick Info</h3>
+          <p class="muted small">Location: Kathmandu, Bagmati Province, Nepal</p>
+          <p class="muted small">Open to: Remote & On-site roles</p>
+          <div style="margin-top:8px" aria-hidden="true">
+            <!-- Simple social SVGs (replace hrefs) -->
+            <a href="#" title="GitHub" style="margin-right:8px">GitHub</a>
+            <a href="#" title="LinkedIn">LinkedIn</a>
+          </div>
+        </section>
+      </aside>
+    </div>
+
+    <footer role="contentinfo">
+      <div class="small muted">© <span id="year"></span> [Your Name] — Kathmandu, Nepal. Replace placeholder content with your details.</div>
+    </footer>
+  </main>
+
+  <script>
+    // Basic interactive behavior: smooth scroll, theme toggle, form validation
+    (function(){
+      // Replace title placeholder in document title
+      document.title = document.title.replace('[Your Name]', '[Your Name]');
+
+      // Fill year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Smooth in-page nav (keyboard friendly)
+      document.querySelectorAll('a[href^="#"]').forEach(function(a){
+        a.addEventListener('click', function(e){
+          var targetId = a.getAttribute('href').slice(1);
+          var target = document.getElementById(targetId);
+          if(target){
+            e.preventDefault();
+            target.focus({preventScroll:true});
+            window.scrollTo({top: target.getBoundingClientRect().top + window.scrollY - 70, behavior:'smooth'});
+          }
+        });
+      });
+
+      // Theme toggle with persistence
+      var themeToggle = document.getElementById('theme-toggle');
+      var root = document.documentElement;
+      var darkKey = 'prefers-dark';
+      function applyTheme(dark){
+        document.body.classList.toggle('dark', dark);
+        themeToggle.setAttribute('aria-pressed', String(dark));
+      }
+      var saved = localStorage.getItem(darkKey);
+      applyTheme(saved === '1');
+      themeToggle.addEventListener('click', function(){
+        var isDark = !document.body.classList.contains('dark');
+        applyTheme(isDark);
+        localStorage.setItem(darkKey, isDark ? '1' : '0');
+      });
+
+      // Simple contact form validation + mailto fallback
+      var form = document.getElementById('contact-form');
+      var msgBox = document.getElementById('form-msg');
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        msgBox.textContent = '';
+        var name = form.name.value.trim();
+        var email = form.email.value.trim();
+        var message = form.message.value.trim();
+        var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if(name.length < 2){ msgBox.textContent = 'Please enter your name.'; form.name.focus(); return; }
+        if(!emailRe.test(email)){ msgBox.textContent = 'Please enter a valid email.'; form.email.focus(); return; }
+        if(message.length < 10){ msgBox.textContent = 'Message should be at least 10 characters.'; form.message.focus(); return; }
+
+        // If you have a backend, replace this with fetch() to your endpoint.
+        // Fallback: open user's mail client with prefilled content:
+        var subject = encodeURIComponent('Contact from Portfolio: ' + name);
+        var body = encodeURIComponent('Name: ' + name + '\\nEmail: ' + email + '\\n\\n' + message);
+        var mailto = 'mailto:youremail@example.com?subject=' + subject + '&body=' + body;
+        // show confirmation and open mail client in new tab
+        msgBox.textContent = 'Opening your email client…';
+        window.location.href = mailto;
+        // Optionally clear
+        form.reset();
+      });
+
+      // Keyboard access: allow Enter on theme toggle
+      themeToggle.addEventListener('keyup', function(e){ if(e.key === 'Enter') themeToggle.click(); });
+    })();
+  </script>
+
+  <!--
+    Deployment notes:
+    - This is a single-file static site. To deploy:
+      * GitHub Pages: push this file as index.html to the gh-pages branch or the repository root of the default branch and enable GitHub Pages.
+      * Netlify: drag & drop the folder containing index.html to the Netlify dashboard or connect the repo and set build to "None".
+    - Replace placeholders: [Your Name], youremail@example.com, project links, and social URLs.
+    - Add an actual profile image (replace the avatar SVG) and optimized images (small WebP or SVG).
+  -->
+</body>
+</html>
+// ...existing code...
