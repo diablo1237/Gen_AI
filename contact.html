@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Registration Form – Contact</title>
+  <meta name="description" content="Registration form to submit your contact information and details."/>
+  <style>
+    /* Minimal CSS reset */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      line-height:1.4;
+      color:#0f1724;
+      background:linear-gradient(180deg,#fbfdff,#eef7ff);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding-top:72px;
+    }
+    :root{
+      --accent:#0ea5a4;
+      --muted:#64748b;
+      --card:#ffffff;
+      --glass: rgba(255,255,255,0.6);
+      --shadow: 0 6px 18px rgba(16,24,40,0.08);
+      --radius:12px;
+      --error:#ef4444;
+      --success:#10b981;
+    }
+    .dark{
+      --accent:#7dd3fc;
+      --muted:#94a3b8;
+      --card:#071329;
+      --glass: rgba(0,0,0,0.45);
+      background:linear-gradient(180deg,#031021,#071329);
+      color:#e6eef8;
+    }
+
+    /* Header / Nav */
+    header{
+      position:fixed;left:0;right:0;top:0;height:64px;display:flex;align-items:center;
+      justify-content:center;backdrop-filter: blur(6px);
+      background:linear-gradient(180deg,rgba(255,255,255,0.7),rgba(255,255,255,0.45));
+      border-bottom:1px solid rgba(15,23,36,0.04);z-index:60;
+    }
+    .dark header{background:linear-gradient(180deg,rgba(0,0,0,0.45),rgba(0,0,0,0.25));border-bottom:1px solid rgba(255,255,255,0.03)}
+    nav{width:100%;max-width:1100px;padding:0 18px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;gap:10px;align-items:center;font-weight:600}
+    .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+    .nav-links{display:flex;gap:12px;align-items:center}
+    .nav-links a{color:inherit;text-decoration:none;padding:8px 12px;border-radius:8px;font-size:0.95rem}
+    .nav-links a:focus, .nav-links a:hover{background:var(--glass);outline:2px solid transparent}
+    .controls{display:flex;gap:8px;align-items:center}
+
+    /* Layout */
+    main{max-width:800px;margin:28px auto;padding:18px}
+    .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:32px}
+    
+    /* Form */
+    h1{font-size:2rem;margin-bottom:8px;color:#0f1724}
+    .dark h1{color:#e6eef8}
+    .subtitle{color:var(--muted);margin-bottom:24px}
+    
+    form{display:flex;flex-direction:column;gap:16px}
+    .form-group{display:flex;flex-direction:column;gap:6px}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    @media (max-width:600px){.form-row{grid-template-columns:1fr}}
+    
+    label{font-size:.95rem;font-weight:500;color:#0f1724}
+    .dark label{color:#e6eef8}
+    .required{color:var(--error)}
+    
+    input[type=text],input[type=email],input[type=tel],input[type=date],input[type=number],select,textarea{
+      padding:12px;
+      border-radius:8px;
+      border:1px solid rgba(15,23,36,0.12);
+      background:var(--card);
+      color:inherit;
+      font-size:1rem;
+      font-family:inherit;
+      transition:all 0.2s ease
+    }
+    .dark input,.dark select,.dark textarea{background:rgba(255,255,255,0.03);border-color:rgba(255,255,255,0.08)}
+    
+    input:focus,select:focus,textarea:focus{
+      outline:none;
+      border-color:var(--accent);
+      box-shadow:0 0 0 3px rgba(14,165,164,0.1)
+    }
+    .dark input:focus,.dark select:focus,.dark textarea:focus{box-shadow:0 0 0 3px rgba(125,211,252,0.1)}
+    
+    textarea{resize:vertical;min-height:100px}
+    
+    .form-hint{font-size:.85rem;color:var(--muted);margin-top:4px}
+    
+    /* Buttons */
+    .form-actions{display:flex;gap:12px;margin-top:16px}
+    button{
+      padding:12px 24px;
+      border-radius:10px;
+      border:0;
+      font-weight:600;
+      cursor:pointer;
+      font-size:1rem;
+      transition:all 0.2s ease
+    }
+    .btn-primary{
+      background:var(--accent);
+      color:#042023;
+    }
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 16px rgba(14,165,164,0.3)}
+    .btn-secondary{
+      background:transparent;
+      color:var(--accent);
+      border:2px solid var(--accent)
+    }
+    .btn-secondary:hover{background:rgba(14,165,164,0.08)}
+    
+    /* Messages */
+    .message{
+      padding:12px 16px;
+      border-radius:8px;
+      margin-bottom:16px;
+      display:none
+    }
+    .message.show{display:block}
+    .success{
+      background:rgba(16,185,129,0.1);
+      color:var(--success);
+      border:1px solid var(--success)
+    }
+    .error{
+      background:rgba(239,68,68,0.1);
+      color:var(--error);
+      border:1px solid var(--error)
+    }
+
+    footer{margin:32px 0;padding:18px;text-align:center;color:var(--muted);font-size:.95rem}
+    .small{font-size:.86rem}
+  </style>
+</head>
+<body>
+  <header role="banner" aria-label="Main header">
+    <nav aria-label="Primary navigation">
+      <div class="brand" aria-hidden="false">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="small">[Abinash Bista]</span>
+      </div>
+
+      <div class="nav-links" role="navigation" aria-label="Section links">
+        <a href="1.html">Home</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+      </div>
+
+      <div class="controls">
+        <button id="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">🌓</button>
+      </div>
+    </nav>
+  </header>
+
+  <main role="main" tabindex="-1">
+    <div class="card">
+      <h1>Registration Form</h1>
+      <p class="subtitle">Please provide your contact information and details</p>
+      
+      <div id="message" class="message"></div>
+      
+      <form id="registrationForm" novalidate>
+        <!-- Full Name -->
+        <div class="form-group">
+          <label for="fullName">Full Name <span class="required">*</span></label>
+          <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+          <span class="form-hint">Your first and last name</span>
+        </div>
+
+        <!-- Email and Phone Row -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email Address <span class="required">*</span></label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            <span class="form-hint">We'll use this to contact you</span>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number <span class="required">*</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="+977 98xxxxxxxx" required>
+            <span class="form-hint">Include country code</span>
+          </div>
+        </div>
+
+        <!-- Citizenship and Date of Birth Row -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="citizenship">Citizenship <span class="required">*</span></label>
+            <select id="citizenship" name="citizenship" required>
+              <option value="">-- Select Citizenship --</option>
+              <option value="Nepal">Nepal</option>
+              <option value="India">India</option>
+              <option value="Pakistan">Pakistan</option>
+              <option value="Bangladesh">Bangladesh</option>
+              <option value="China">China</option>
+              <option value="USA">USA</option>
+              <option value="UK">UK</option>
+              <option value="Canada">Canada</option>
+              <option value="Australia">Australia</option>
+              <option value="Other">Other</option>
+            </select>
+            <span class="form-hint">Your country of citizenship</span>
+          </div>
+          <div class="form-group">
+            <label for="dob">Date of Birth <span class="required">*</span></label>
+            <input type="date" id="dob" name="dob" required>
+            <span class="form-hint">Your birth date</span>
+          </div>
+        </div>
+
+        <!-- Address Row -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="country">Country <span class="required">*</span></label>
+            <input type="text" id="country" name="country" placeholder="e.g., Nepal" required>
+            <span class="form-hint">Your current country</span>
+          </div>
+          <div class="form-group">
+            <label for="city">City <span class="required">*</span></label>
+            <input type="text" id="city" name="city" placeholder="e.g., Kathmandu" required>
+            <span class="form-hint">Your city of residence</span>
+          </div>
+        </div>
+
+        <!-- Full Address -->
+        <div class="form-group">
+          <label for="address">Street Address</label>
+          <input type="text" id="address" name="address" placeholder="123 Main Street, Apartment 4B">
+          <span class="form-hint">Your full street address (optional)</span>
+        </div>
+
+        <!-- Postal Code and Gender Row -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="postalCode">Postal/ZIP Code</label>
+            <input type="text" id="postalCode" name="postalCode" placeholder="e.g., 44600">
+            <span class="form-hint">Postal code (optional)</span>
+          </div>
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender">
+              <option value="">-- Select Gender --</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+              <option value="Prefer not to say">Prefer not to say</option>
+            </select>
+            <span class="form-hint">Optional</span>
+          </div>
+        </div>
+
+        <!-- Occupation -->
+        <div class="form-group">
+          <label for="occupation">Occupation</label>
+          <input type="text" id="occupation" name="occupation" placeholder="e.g., Software Engineer, Student">
+          <span class="form-hint">Your current occupation (optional)</span>
+        </div>
+
+        <!-- Additional Info -->
+        <div class="form-group">
+          <label for="message">Additional Information</label>
+          <textarea id="message" name="message" placeholder="Any additional details you'd like to share..."></textarea>
+          <span class="form-hint">Optional</span>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="form-actions">
+          <button type="submit" class="btn-primary">Submit Registration</button>
+          <button type="reset" class="btn-secondary">Clear Form</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Abinash Bista. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    if(isDarkMode) document.body.classList.add('dark');
+    
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.body.classList.toggle('dark');
+      localStorage.setItem('darkMode', isDark);
+    });
+
+    // Form handling
+    const form = document.getElementById('registrationForm');
+    const messageDiv = document.getElementById('message');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Basic validation
+      const fullName = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const citizenship = document.getElementById('citizenship').value;
+      const dob = document.getElementById('dob').value;
+      const country = document.getElementById('country').value.trim();
+      const city = document.getElementById('city').value.trim();
+
+      if(!fullName || !email || !phone || !citizenship || !dob || !country || !city) {
+        showMessage('Please fill in all required fields.', 'error');
+        return;
+      }
+
+      // Email validation
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if(!emailPattern.test(email)) {
+        showMessage('Please enter a valid email address.', 'error');
+        return;
+      }
+
+      // Collect form data
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+      
+      // Log form data (in production, send to server)
+      console.log('Form submitted with data:', data);
+      localStorage.setItem('registrationData', JSON.stringify(data));
+      
+      showMessage('✓ Registration submitted successfully! Your information has been saved.', 'success');
+      setTimeout(() => {
+        form.reset();
+        messageDiv.classList.remove('show');
+      }, 3000);
+    });
+
+    function showMessage(text, type) {
+      messageDiv.textContent = text;
+      messageDiv.className = `message show ${type}`;
+      messageDiv.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+    }
+
+    // Load saved data if it exists
+    const savedData = localStorage.getItem('registrationData');
+    if(savedData) {
+      const data = JSON.parse(savedData);
+      Object.keys(data).forEach(key => {
+        const field = document.getElementById(key);
+        if(field) field.value = data[key];
+      });
+    }
+  </script>
+</body>
+</html>
